@@ -3,7 +3,11 @@ import { Moon, Sun } from "lucide-react";
 import useTheme from "next-theme";
 import React, { useEffect, useState } from "react";
 
-const ThemeSwitcher = () => {
+type Props ={
+  active: boolean
+}
+
+const ThemeSwitcher: React.FC<Props> = ({active}) => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -19,7 +23,7 @@ const ThemeSwitcher = () => {
     <div className="!cursor-pointer p-2  transition-all duration-300 z-[96]">
       {theme === "light" ? (
         <Moon
-          className="!cursor-pointer h-6 w-6 dark:text-white animate-slideInFromTop"
+          className={`${active && "text-white"} !cursor-pointer h-6 w-6 dark:text-white animate-slideInFromTop`}
           onClick={() => setTheme("dark")}
           aria-label="Toggle Dark Mode"
         />

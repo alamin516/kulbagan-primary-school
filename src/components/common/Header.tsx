@@ -41,7 +41,7 @@ const Header: FC<Props> = (props) => {
       <div
         className={`${
           active
-            ? "dark:bg-opacity-50 dark:bg-gradient-to-b dark:from-gray-900 dark:to-black fixed top-0 left-0 w-full h-[80px] z-[90] border-b dark:border-[#ffffff1c] duration-300"
+            ? "bg-green-500 dark:bg-opacity-50 dark:bg-gradient-to-b dark:from-gray-900 dark:to-black fixed top-0 left-0 w-full h-[80px] z-[90] border-b dark:border-[#ffffff1c] duration-300"
             : "w-full border-b dark:border-[#ffffff1c] h-[80px] z-[90] dark:shadow"
         }`}
       >
@@ -50,22 +50,22 @@ const Header: FC<Props> = (props) => {
             <div>
               <Link
                 href={"/"}
-                className={`text-[25px] font-Poppins font-[500] text-black dark:text-white !cursor-pointer`}
+                className={`text-[25px] font-Poppins font-[500] text-black dark:text-white !cursor-pointer ${active && "text-white"} `}
               >
                 Dot Learning
               </Link>
             </div>
             <div className="flex items-center gap-5">
               <NavItems activeItem={activeItem} isMobile={false} />
-              <ThemeSwitcher />
+              <ThemeSwitcher active={active}/>
               {/* mobile view */}
-              <div className="800px:hidden">
+              <div className={`${active && "text-white"} 800px:hidden`}>
                 <Text
                   className="!cursor-pointer h-6 w-6 dark:text-white transform rotate-180"
                   onClick={() => setOpenSidebar(true)}
                 />
               </div>
-              <div className="hidden 800px:block">
+              <div className={`${active && "text-white"} hidden 800px:block`}>
                 <CircleUserRound
                   className="!cursor-pointer h-6 w-6 dark:text-white"
                   onClick={() => setOpen(true)}
