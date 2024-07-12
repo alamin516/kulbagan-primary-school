@@ -11,7 +11,7 @@ const Hero: React.FC<Props> = () => {
   const { theme } = useTheme();
   return (
     <div className="w-full 1000px:flex 1500px:min-h-screen items-center justify-center">
-      <div className="absolute top-[100px] 1000px:top-[unset] 1500px:h-[700px] 1000px:w-[700px] 1100px:h-[600px] 1100px:w-[600px] min-h-screen w-full hero_animation "></div>
+      <div className="absolute top-[100px] 1000px:top-[unset] 1500px:h-[700px] 1000px:w-[700px] 1100px:h-[600px] 1100px:w-[600px] min-h-screen w-full hero_animation -z-10"></div>
      {theme === 'light' && <div className="absolute top-[80px] min-h-screen w-full bg-gradient-to-r from-white via-[#f3ecec] to-green-100 -z-10"></div>}
 
       {/* <div className="1000px:w-[40%] flex 1000px:min-h-screen items-center justify-center 800px:justify-end pt-[70px] 1000px:pt-0 z-10">
@@ -24,7 +24,7 @@ const Hero: React.FC<Props> = () => {
           priority
         />
       </div> */}
-      <div className="1000px:w-[100%] flex flex-col items-center 1000px:mt-0 text-center 1000px:text-center 800px:mt-[150px] mt-[75px]">
+      <div className="1000px:w-[100%] flex flex-col items-center 1000px:mt-0 text-center 1000px:text-center 800px:mt-[150px] mt-[75px] ">
         <h2 className="dark:text-white text-[#000000c7] text-[30px] px-3 w-full 1000px:text-[70px] font-[600] font-Josefin py-2 1000px:leading-[75px] 1500px:!w-[55%] 800px:pt-[100px]">
           Improve Your online Learning Experience Better Instantly
         </h2>
