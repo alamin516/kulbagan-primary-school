@@ -10,20 +10,21 @@ type Props = {
 };
 
 const schema = Yup.object().shape({
+  name: Yup.string().required("Please enter your name."),
   email: Yup.string()
     .email("Invalid email!")
     .required("Please enter your email"),
   password: Yup.string().required("Please enter your password").min(6),
 });
 
-const Login: FC<Props> = ({ setRoute }) => {
+const SignUp: FC<Props> = ({ setRoute }) => {
   const [show, setShow] = useState(false);
 
   const formik = useFormik({
-    initialValues: { email: "", password: "" },
+    initialValues: { name: "", email: "", password: "" },
     validationSchema: schema,
-    onSubmit: async ({ email, password }) => {
-      console.log(email, password);
+    onSubmit: async ({ name, email, password }) => {
+      setRoute("Verification")
     },
   });
 
@@ -31,24 +32,42 @@ const Login: FC<Props> = ({ setRoute }) => {
 
   return (
     <div className="p-4">
-      <h1 className={`${styles.title}`}>Login with Dot Learning</h1>
+      <h1 className={`${styles.title}`}>Join to Dot Learning</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="email" className={`${styles.label}`}>
-          Enter your email here
+        <label htmlFor="name" className={`${styles.label}`}>
+          Enter your name here
         </label>
         <input
-          type="email"
-          id="email"
-          value={values.email}
+          type="text"
+          id="name"
+          value={values.name}
           onChange={handleChange}
-          placeholder="loginaddress@****.com"
+          placeholder="Mr. John Doe"
           className={`${
-            errors.email && touched.email && "border-red-500"
+            errors.name && touched.name && "border-red-500"
           } w-full text-black dark:text-white bg-transparent border rounded !h-[40px] px-2 outline-none mt-[10px] font-Poppins`}
         />
-        {errors.email && touched.email && (
-          <span className="text-red-500 p-2 block">{errors.email}</span>
+        {errors.name && touched.name && (
+          <span className="text-red-500 p-2 block">{errors.name}</span>
         )}
+        <div className="mt-5">
+          <label htmlFor="email" className={`${styles.label}`}>
+            Enter your email here
+          </label>
+          <input
+            type="email"
+            id="email"
+            value={values.email}
+            onChange={handleChange}
+            placeholder="SignUpaddress@****.com"
+            className={`${errors.email && touched.email && "border-red-500"} ${
+              styles.input
+            }`}
+          />
+          {errors.email && touched.email && (
+            <span className="text-red-500 p-2 block">{errors.email}</span>
+          )}
+        </div>
         <div className="w-full mt-5 relative mb-1">
           <label htmlFor="password" className={`${styles.label}`}>
             Enter your password here
@@ -61,7 +80,7 @@ const Login: FC<Props> = ({ setRoute }) => {
             placeholder="********"
             className={`${
               errors.password && touched.password && "border-red-500"
-            } w-full text-black dark:text-white bg-transparent border rounded !h-[40px] px-2 outline-none mt-[10px] font-Poppins`}
+            } ${styles.input}`}
           />
           {!show ? (
             <EyeOffIcon
@@ -81,11 +100,7 @@ const Login: FC<Props> = ({ setRoute }) => {
           )}
         </div>
         <div className="w-full mt-5">
-          <input
-            type="submit"
-            value="Login"
-            className={`flex flex-row justify-center items-center px-6 rounded-md bg-green-600 text-white min-h-[45px] w-full text-base font-Poppins font-semibold cursor-pointer`}
-          />
+          <input type="submit" value="SignUp" className={`${styles.button}`} />
         </div>
         <div className="w-full mt-8 text-center">
           <p className={`${styles.label}`}>Or join with</p>
@@ -95,12 +110,12 @@ const Login: FC<Props> = ({ setRoute }) => {
         </div>
         <div className="w-full mt-8 text-center">
           <p className={`${styles.label}`}>
-            Not have an account?{" "}
+            Already have an account?{" "}
             <span
               className="text-green-500 cursor-pointer"
-              onClick={() => setRoute("Sign-Up")}
+              onClick={() => setRoute("Login")}
             >
-              Sign Up
+              Sign In
             </span>
           </p>
         </div>
@@ -109,4 +124,4 @@ const Login: FC<Props> = ({ setRoute }) => {
   );
 };
 
-export default Login;
+export default SignUp;
