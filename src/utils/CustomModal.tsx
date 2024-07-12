@@ -14,6 +14,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
+  borderRadius: '8px',
 };
 
 const CustomModal: FC<Props> = ({
@@ -31,7 +32,7 @@ const CustomModal: FC<Props> = ({
       aria-describedby="modal-modal-description"
     >
       <Box sx={style}
-        className="w-[350px] bg-white dark:bg-slate-900 rounded-[8px] shadow !p-4 outline-none"
+        className=" bg-white dark:bg-slate-900 rounded-[8px] shadow !p-4 outline-none"
       >
         <Component setOpen={setOpen} setRoute={setRoute} />
       </Box>
