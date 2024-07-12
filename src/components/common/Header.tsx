@@ -5,6 +5,8 @@ import { FC, useState } from "react";
 import { NavItems } from "./NavItems";
 import ThemeSwitcher from "@/utils/ThemeSwitcher";
 import { CircleUserRound, Text } from "lucide-react";
+import CustomModal from "@/utils/CustomModal";
+import Login from "../Auth/Login";
 
 interface Props {}
 
@@ -13,6 +15,7 @@ const Header: FC<Props> = (props) => {
   const [activeItem, setActiveItem] = useState(0);
   const [active, setActive] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
+  const [route, setRoute] = useState("Login");
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
@@ -108,6 +111,22 @@ const Header: FC<Props> = (props) => {
           </div>
         )}
       </div>
+
+      {
+        route === "Login" &&(
+          <>
+          {
+            open && <CustomModal
+            open={open}
+            setOpen={setOpen}
+            activeItem={activeItem}
+            setRoute={setRoute}
+            component={Login}
+            />
+          }
+          </>
+        )
+      }
     </div>
   );
 };
